@@ -23,4 +23,23 @@ router.get('/maisModelos', async (req, res) => {
   }
 });
 
+router.get('/menosModelos', async (req, res) => {
+  try {
+    const data = JSON.parse(await readFile('car-list.json'));
+
+    let menorQuantidadeDeModelos = 1000;
+    let marcaComMenosModelos = '';
+
+    data.forEach(brand => {
+      if (brand.models.length < menorQuantidadeDeModelos) {
+        menorQuantidadeDeModelos = brand.models.length;
+        marcaComMenosModelos = brand.brand;
+      }
+    });
+    res.send(marcaComMenosModelos);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 export default router;
