@@ -53,7 +53,12 @@ router.get('/listaMaisModelos/:id', async (req, res) => {
     });
 
     const marcasOrdenadas = Object.entries(contadorModelosPorMarca)
-      .sort((a, b) => b[1] - a[1])
+      .sort((a, b) => {
+        if (b[1] !== a[1]) {
+          return b[1] - a[1];
+        }
+        return a[0].localeCompare(b[0]);
+      })
       .slice(0, id);
 
     const resultado = marcasOrdenadas.map(
@@ -77,7 +82,12 @@ router.get('/listaMenosModelos/:id', async (req, res) => {
     });
 
     const marcasOrdenadas = Object.entries(contadorModelosPorMarca)
-      .sort((a, b) => a[1] - b[1])
+      .sort((a, b) => {
+        if (a[1] !== b[1]) {
+          return a[1] - b[1];
+        }
+        return a[0].localeCompare(b[0]);
+      })
       .slice(0, id);
 
     const resultado = marcasOrdenadas.map(
