@@ -4,7 +4,7 @@ const router = express.Router();
 
 const { readFile } = fs;
 
-router.get('/maisModelos', async (req, res) => {
+router.get('/maisModelos', async (req, res, next) => {
   try {
     const data = JSON.parse(await readFile('car-list.json'));
 
@@ -19,11 +19,11 @@ router.get('/maisModelos', async (req, res) => {
     });
     res.send(marcaComMaisModelos);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 
-router.get('/menosModelos', async (req, res) => {
+router.get('/menosModelos', async (req, res, next) => {
   try {
     const data = JSON.parse(await readFile('car-list.json'));
 
@@ -38,11 +38,11 @@ router.get('/menosModelos', async (req, res) => {
     });
     res.send(marcaComMenosModelos);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 
-router.get('/listaMaisModelos/:id', async (req, res) => {
+router.get('/listaMaisModelos/:id', async (req, res, next) => {
   try {
     let id = req.params.id;
     const data = JSON.parse(await readFile('car-list.json'));
@@ -67,11 +67,11 @@ router.get('/listaMaisModelos/:id', async (req, res) => {
 
     res.send(resultado);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 
-router.get('/listaMenosModelos/:id', async (req, res) => {
+router.get('/listaMenosModelos/:id', async (req, res, next) => {
   try {
     let id = req.params.id;
     const data = JSON.parse(await readFile('car-list.json'));
@@ -95,11 +95,11 @@ router.get('/listaMenosModelos/:id', async (req, res) => {
     );
     res.send(resultado);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 
-router.post('/listaModelos', async (req, res) => {
+router.post('/listaModelos', async (req, res, next) => {
   try {
     const data = JSON.parse(await readFile('car-list.json'));
     const brand = data.find(
@@ -111,8 +111,13 @@ router.post('/listaModelos', async (req, res) => {
       res.send([]);
     }
   } catch (err) {
-    console.log(err);
+    next(err);
   }
+});
+
+router.use((err, res, req, next) => {
+  console.log(err);
+  res.status(400).send({ error: err.message });
 });
 
 export default router;
