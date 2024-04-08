@@ -93,8 +93,23 @@ router.get('/listaMenosModelos/:id', async (req, res) => {
     const resultado = marcasOrdenadas.map(
       ([marca, quantidade]) => `${marca} - ${quantidade}`
     );
-
     res.send(resultado);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.post('/listaModelos', async (req, res) => {
+  try {
+    const data = JSON.parse(await readFile('car-list.json'));
+    const brand = data.find(
+      b => b.brand.toUpperCase() === req.body.nomeMarca.toUpperCase()
+    );
+    if (brand) {
+      res.send(brand.models);
+    } else {
+      res.send([]);
+    }
   } catch (err) {
     console.log(err);
   }
