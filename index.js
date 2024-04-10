@@ -1,8 +1,24 @@
 import express from 'express';
+import winston from 'winston';
 import marcasRouter from './routes/marcas.js';
 import { promises as fs } from 'fs';
 
 const { readFile } = fs;
+
+global.fileName = 'car-list.json';
+
+const { combine, timestamp, label, printf } = winston.format;
+const myFormat = printf(({ level, message, label, timestamp }) => {
+  return `${timestamp} [${label}] ${level}: ${message}`;
+});
+global.logger = winston.createLogger({
+  level: 'silly',
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'car-brands-api.log' }),
+  ],
+  format: combine(label({ label: 'car-brands-api' }), timestamp(), myFormat),
+});
 
 const app = express();
 
@@ -11,9 +27,9 @@ app.use('/marcas', marcasRouter);
 
 app.listen(3000, async () => {
   try {
-    await readFile('car-list.json');
+    await readFile(global.fileName);
   } catch (err) {
-    console.log(err);
+    logger.error(err);
   }
-  console.log('API Started!');
+  logger.info('API Started!');
 });

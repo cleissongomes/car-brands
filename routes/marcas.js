@@ -18,6 +18,7 @@ router.get('/maisModelos', async (req, res, next) => {
       }
     });
     res.send(marcaComMaisModelos);
+    logger.info('GET /maisModelos');
   } catch (err) {
     next(err);
   }
@@ -37,6 +38,7 @@ router.get('/menosModelos', async (req, res, next) => {
       }
     });
     res.send(marcaComMenosModelos);
+    logger.info('GET /menosModelos');
   } catch (err) {
     next(err);
   }
@@ -66,6 +68,7 @@ router.get('/listaMaisModelos/:id', async (req, res, next) => {
     );
 
     res.send(resultado);
+    logger.info('GET /listaMaisModelos');
   } catch (err) {
     next(err);
   }
@@ -94,6 +97,7 @@ router.get('/listaMenosModelos/:id', async (req, res, next) => {
       ([marca, quantidade]) => `${marca} - ${quantidade}`
     );
     res.send(resultado);
+    logger.info('GET /listaMenosModelos');
   } catch (err) {
     next(err);
   }
@@ -110,12 +114,14 @@ router.post('/listaModelos', async (req, res, next) => {
     } else {
       res.send([]);
     }
+    logger.info('POST /listaModelos');
   } catch (err) {
     next(err);
   }
 });
 
 router.use((err, res, req, next) => {
+  global.logger.error(`${req.method} ${req.baseUrl} - ${err.message}`);
   console.log(err);
   res.status(400).send({ error: err.message });
 });
