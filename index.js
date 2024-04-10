@@ -2,6 +2,7 @@ import express from 'express';
 import winston from 'winston';
 import marcasRouter from './routes/marcas.js';
 import { promises as fs } from 'fs';
+import cors from 'cors';
 
 const { readFile } = fs;
 
@@ -23,6 +24,7 @@ global.logger = winston.createLogger({
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use('/marcas', marcasRouter);
 
 app.listen(3000, async () => {
