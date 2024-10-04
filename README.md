@@ -1,40 +1,41 @@
-# **Marcas de Carro**
-Este projeto é uma API REST e tem como objetivos acessar o arquivo JSON "lista-de-carros.json" e retornar:
+# **Car Brands**
+This project is a REST API and its objectives are to access the JSON file "car-list.json" and return:
 
-a) O nome da marca que mais possui modelos.
-b) O nome da marca que menos possui modelos.
-c) Receber como parâmetro um número X e retornar as X marcas que mais possuem modelos, seguidas da quantidade, em ordem decrescente.
-d) Receber como parâmetro um número X e retornar as X marcas que menos possuem modelos, seguidas da quantidade, em ordem crescente.
-e) Receber como parâmetro o nome de uma marca e retornar a lista de seus modelos. Caso o nome da marca informada não exista no arquivo JSON, um array vazio será retornado. A busca desconsidera diferenças entre caracteres maiúsculos e minúsculos.
+- The name of the brand with the most models.-
+- The name of the brand with the least models.
+- Receive a number X as a parameter and return the X brands with the most models, followed by the quantity, in descending order.
+- Receive a number X as a parameter and return the X brands with the least models, followed by the quantity, in ascending order.
+- Receive the name of a brand as a parameter and return the list of its models. If the name of the brand entered does not exist in the JSON file, an empty array will be returned. The search disregards differences between upper and lower case characters.
 
-## **Instalação**
-Para instalar as dependências necessárias, execute o seguinte comando no seu terminal:
+## **Installation**
+To install the required dependencies, run the following command in your terminal:
 
 npm install
 
-## **Uso**
-Após instalar as dependências, para utilizar o Marcas de Carros, siga os passos abaixo:
+## **Usage**
+After installing the dependencies, to use Car Brands, follow the steps below:
 
-Para rodar o projeto, execulte o seguinte comando no seu terminal:
+To run the project, run the following command in your terminal:
 
 node index.js
 
-Em seguida, utilize uma ferramenta de endpoints como Insomnia ou Postman para testar as rotas da API.
-As seguintes rotas estão disponíveis:
-GET /marcas/maisModelos - Retorna a marca com mais modelos.
-GET /marcas/menosModelos - Retorna a marca com menos modelos.
-GET /marcas/listaMaisModelos/:X - Retorna as X marcas com mais modelos, em ordem decrescente.
-GET /marcas/listaMenosModelos/:X - Retorna as X marcas com menos modelos, em ordem crescente.
-POST /marcas/listaModelos - Retorna a lista de modelos de uma marca especificada.
+Then, use an endpoint tool such as Insomnia or Postman to test the API routes.
 
-## **Status do Projeto**
-Este projeto está atualmente ativo e em desenvolvimento contínuo.
+The following routes are available:
+GET /brands/moreModels - Returns the brand with the most models.
+GET /brands/lessModels - Returns the brand with the least models.
+GET /brands/listMoreModels/:X - Returns the X brands with the most models, in descending order.
+GET /brands/listLessModels/:X - Returns the X brands with the least models, in ascending order.
+POST /brands/listModels - Returns the list of models for a specified brand.
 
-## **Licença**
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para mais detalhes.
+## **Project Status**
+This project is currently active and under continuous development.
 
-## **Agradecimentos**
-Obrigado a todos os colaboradores que tornaram este projeto possível.
+## **License**
+This project is licensed under the MIT License - see the LICENSE file for more details.
 
-## **Contato**
-Se você tiver alguma dúvida ou sugestão sobre este projeto, sinta-se à vontade para entrar em contato pelo e-mail: cleissongomes777@gmail.com.
+## **Acknowledgements**
+Thanks to all the contributors who made this project possible.
+
+## **Contact**
+If you have any questions or suggestions about this project, feel free to contact us by email: cleissongomes777@gmail.com.
