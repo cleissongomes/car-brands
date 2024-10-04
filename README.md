@@ -22,11 +22,11 @@ node index.js
 Then, use an endpoint tool such as Insomnia or Postman to test the API routes.
 
 The following routes are available:
-GET /brands/moreModels - Returns the brand with the most models.
-GET /brands/lessModels - Returns the brand with the least models.
-GET /brands/listMoreModels/:X - Returns the X brands with the most models, in descending order.
-GET /brands/listLessModels/:X - Returns the X brands with the least models, in ascending order.
-POST /brands/listModels - Returns the list of models for a specified brand.
+- GET /brands/moreModels - Returns the brand with the most models.
+- GET /brands/lessModels - Returns the brand with the least models.
+- GET /brands/listMoreModels/:X - Returns the X brands with the most models, in descending order.
+- GET /brands/listLessModels/:X - Returns the X brands with the least models, in ascending order.
+- POST /brands/listModels - Returns the list of models for a specified brand.
 
 ## **Project Status**
 This project is currently active and under continuous development.
